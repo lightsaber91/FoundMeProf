@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (C) 2014 - Simone Martucci <martucci.simone.91@gmail.com>
+  ~ Copyright (C) 2014 - Mattia Mancini <mattia.mancini.1991@gmail.com>
+  ~
+  ~ This file is part of Foundme Professore.
+  ~
+  ~ Foundme Professore is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Foundme Professore is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Foundme Professore.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:hint="@string/reg_nome"
+        android:id="@+id/etNewUser"
+        android:layout_below="@+id/ivLogo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="37dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/reg_password"
+        android:ems="10"
+        android:id="@+id/etNewPass"
+        android:typeface="normal"
+        android:visibility="visible"
+        android:layout_below="@+id/etNewMail2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/reg_mail"
+        android:ems="10"
+        android:id="@+id/etNewMail"
+        android:layout_below="@+id/etNewUser"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/reg_dept"
+        android:id="@+id/etNewDept"
+        android:typeface="normal"
+        android:layout_below="@+id/etNewPass2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submitSignUp"
+        android:id="@+id/btSignUp"
+        android:layout_below="@+id/etNewDept"
+        android:layout_centerHorizontal="true"
+        android:background="#ff429874"
+        android:textColor="#ffffffff" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300px"
+        android:id="@+id/ivLogo"
+        android:src="@drawable/tv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/conf_password"
+        android:ems="10"
+        android:id="@+id/etNewPass2"
+        android:typeface="normal"
+        android:visibility="visible"
+        android:layout_below="@+id/etNewPass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="@string/reg_mail2"
+        android:ems="10"
+        android:id="@+id/etNewMail2"
+        android:layout_below="@+id/etNewMail"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

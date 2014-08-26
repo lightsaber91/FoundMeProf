@@ -1,0 +1,41 @@
+<!--
+  ~ Copyright (C) 2014 - Simone Martucci <martucci.simone.91@gmail.com>
+  ~ Copyright (C) 2014 - Mattia Mancini <mattia.mancini.1991@gmail.com>
+  ~
+  ~ This file is part of Foundme Professore.
+  ~
+  ~ Foundme Professore is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Foundme Professore is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Foundme Professore.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:colorBackground">#FF429874</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">#FF429874</item>
+        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+    </style>
+
+    <style name="TitleTextStyle" parent="android:Theme.Holo.Light.DarkActionBar" >
+        <item name="android:textColor">#FFFFFF</item>
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:textSize">20sp</item>
+    </style>
+
+</resources>

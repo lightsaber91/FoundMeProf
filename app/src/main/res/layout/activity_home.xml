@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (C) 2014 - Simone Martucci <martucci.simone.91@gmail.com>
+  ~ Copyright (C) 2014 - Mattia Mancini <mattia.mancini.1991@gmail.com>
+  ~
+  ~ This file is part of Foundme Professore.
+  ~
+  ~ Foundme Professore is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Foundme Professore is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Foundme Professore.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ivLogo2"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/ivLogo2"
+        android:background="#ff429874"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLoginOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/loginOk"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="272dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:id="@+id/tvNFC"
+            android:layout_width="272dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ivLogo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/linearLayout"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvCourses"
+        android:layout_toRightOf="@+id/tvCourses"
+        android:adjustViewBounds="false"
+        android:background="#ffffffff"
+        android:clickable="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/logotv"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/tvCourses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selcetCourses"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvCourses">
+
+        <ListView
+            android:id="@+id/lvCourses"
+            android:layout_width="match_parent"
+            android:layout_height="357dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvCourses" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

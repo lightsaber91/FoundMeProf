@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2014 - Simone Martucci <martucci.simone.91@gmail.com>
+  ~ Copyright (C) 2014 - Mattia Mancini <mattia.mancini.1991@gmail.com>
+  ~
+  ~ This file is part of Foundme Professore.
+  ~
+  ~ Foundme Professore is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Foundme Professore is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Foundme Professore.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+
+    <!-- Activity Titles -->
+    <string name="app_name">FoundMe</string>
+    <string name="app_name_launcher">FoundMe Professore</string>
+    <string name="title_activity_send_message">Comunicazioni</string>
+    <string name="title_activity_registration">Registrazione</string>
+    <string name="title_activity_home">Professore</string>
+    <string name="title_activity_add">Aggiungi un Corso</string>
+
+    <!-- Layout Hints -->
+    <string name="action_settings">Settings</string>
+    <string name="title">Benvenuto in foundme!</string>
+    <string name="user">Nome Utente (e-Mail)</string>
+    <string name="password">Password</string>
+    <string name="access">Accedi</string>
+    <string name="register">Non sei ancora registrato?\n Clicca qui per registrarti!</string>
+    <string name="loginOk">Benvenuto </string>
+    <string name="manageCourses">Gestisci corsi</string>
+    <string name="selcetCourses">Seleziona un corso:</string>
+    <string name="reg_nome">Inserisci il tuo nome completo</string>
+    <string name="reg_password">Inserisci la password</string>
+    <string name="reg_old_password">Inserisci la vecchia password</string>
+    <string name="reg_new_pass">Inserisci la nuova password</string>
+    <string name="reg_new_pass2">Re-Inserisci la nuova password</string>
+    <string name="conf_password">Re-inserisci la password</string>
+    <string name="reg_mail">Inserisci la tua mail</string>
+    <string name="reg_mail2">Re-inserisci la tua mail</string>
+    <string name="reg_dept">Inserisci il tuo dipartimento</string>
+    <string name="submitSignUp">Registrati</string>
+    <string name="logout">Logout</string>
+    <string name="changePass">Cambia Password</string>
+    <string name="delAccount">Elimina Account</string>
+    <string name="accSetting">Impostazioni Account</string>
+    <string name="info_del">Inserisci le seguenti informazioni:</string>
+    <string name="confirm_delete">Conferma Eliminazione</string>
+    <string name="confirm_change">Conferma Cambiamento</string>
+    <string name="reg_corso">Inserisci il titolo del corso</string>
+    <string name="reg_cfu">Inserisci il numero di crediti</string>
+    <string name="reg_prof1">Inserisci il tuo nome</string>
+    <string name="reg_prof2">Inserisci il nome di un secondo professore (Opzionale)</string>
+    <string name="reg_prof3">Inserisci il nome di un terzo professore (Opzionale)</string>
+    <string name="submitCourse">Registra Corso</string>
+    <string name="editCourse">Modifica Corso</string>
+    <string name="change_title">Inserisci il nuovo titolo</string>
+    <string name="service_comunication">Comunicazioni</string>
+    <string name="send_notification">Invia Notifica</string>
+    <string name="send_message">Invia Messaggio</string>
+    <string name="duration">Durata Ricevimento in Ore</string>
+    <string name="room">Stanza Ricevimento</string>
+    <string name="str_action1">edit</string>
+    <string name="str_action2">delete</string>
+    <string name="str_action3">Action3</string>
+    <string name="aggiungi">Aggiungi Corso</string>
+    <string name="scrivi">Inserisci il testo del messaggio</string>
+
+    <!-- Resources -->
+    <string name="pref_title_sync_frequency"></string>
+    <string name="pref_title_system_sync_settings"></string>
+    <string name="pref_title_social_recommendations"></string>
+    <string name="pref_description_social_recommendations"></string>
+    <string name="pref_title_display_name"></string>
+    <string name="pref_title_add_friends_to_messages"></string>
+    <string name="pref_default_display_name"></string>
+    <string name="pref_header_general"></string>
+    <string name="pref_header_notifications"></string>
+    <string name="pref_header_data_sync"></string>
+    <string name="pref_title_new_message_notifications"></string>
+    <string name="pref_title_ringtone"></string>
+    <string name="pref_title_vibrate"></string>
+
+</resources>
