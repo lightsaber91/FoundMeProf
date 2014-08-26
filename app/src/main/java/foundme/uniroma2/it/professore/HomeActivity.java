@@ -137,7 +137,7 @@ public class HomeActivity extends Activity {
         imgUniroma2 = (ImageButton) findViewById(R.id.ivLogo2);
         imgUniroma2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Variables_it.LOGO_TV));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Variables_it.SITE_TV));
                 startActivity(browserIntent);
             }
         });

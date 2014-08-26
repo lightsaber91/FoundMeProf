@@ -78,7 +78,7 @@ public class Variables_it {
     public static final String EDIT_COURSE = "http://54.187.29.169/android/prof/editCourse.php";
     public static final String DEL_COURSE = "http://54.187.29.169/android/prof/delCourse.php";
     public static final String SEND_MSG = "http://54.187.29.169/android/prof/writeMsg.php";
-    public static final String LOGO_TV = "www.uniroma2.it";
+    public static final String SITE_TV = "http://didatticaweb.uniroma2.it/";
 
     //Connection Variables
     public static final String INVALID_IP = "Errore: IP non trovato";
