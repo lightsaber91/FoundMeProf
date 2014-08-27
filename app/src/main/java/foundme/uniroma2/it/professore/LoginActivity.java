@@ -123,7 +123,7 @@ public class LoginActivity extends Activity {
 
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://54.187.29.169/android/prof/login.php");
+                HttpPost httppost = new HttpPost(Variables_it.LOGIN);
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();

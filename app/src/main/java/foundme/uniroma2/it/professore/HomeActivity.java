@@ -426,8 +426,8 @@ public class HomeActivity extends Activity {
                     ( new Handler()).postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            swipeView.setRefreshing(false);
                             new getCourses().execute(name);
+                            swipeView.setRefreshing(false);
                         }
                     }, 3000);
                 }

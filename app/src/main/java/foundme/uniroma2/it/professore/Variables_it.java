@@ -69,6 +69,7 @@ public class Variables_it {
     public static final String DEPT = "Dipartimento";
 
     //Web Addresses
+    public static final String LOGIN = "http://54.187.29.169/android/prof/login.php";
     public static final String REGISTRATION ="http://54.187.29.169/android/prof/register.php";
     public static final String GET_COURSES= "http://54.187.29.169/android/prof/getCourse.php";
     public static final String CHANGE_PASSWORD = "http://54.187.29.169/android/prof/changePassword.php";
