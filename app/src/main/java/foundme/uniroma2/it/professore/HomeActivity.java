@@ -417,11 +417,12 @@ public class HomeActivity extends Activity {
         @Override
         protected void onPostExecute(String result) {
             if (name == null || name.isEmpty() || name.equalsIgnoreCase("")) {
-                Intent i = new Intent(HomeActivity.this, LoginActivity.class);
+                Intent i = new Intent(context, LoginActivity.class);
                 i.putExtra(Variables_it.TAG, result);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
+                finish();
             } else nfctest.setText(result);
         }
 
