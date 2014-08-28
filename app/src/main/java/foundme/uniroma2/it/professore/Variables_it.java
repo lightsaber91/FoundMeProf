@@ -44,6 +44,15 @@ public class Variables_it {
     public static final String SHA = "SHA-1";
     public static final String OPTION = "Opzioni";
 
+    //To-Do Job String
+    public static final String FINISH = "C";
+    public static final String DELACC = "D";
+    public static final String HOME = "H";
+    public static final String CHANGEP = "CP";
+    public static final String REGIS = "R";
+    public static final String LOG = "L";
+    public static final String GET = "G";
+
     //NFC Fields
     public static final String TAG = "Tag";
     public static final String MIME_TEXT_PLAIN = "text/plain";
@@ -70,8 +79,8 @@ public class Variables_it {
 
     //Web Addresses
     public static final String LOGIN = "http://54.187.29.169/android/prof/login.php";
-    public static final String REGISTRATION ="http://54.187.29.169/android/prof/register.php";
-    public static final String GET_COURSES= "http://54.187.29.169/android/prof/getCourse.php";
+    public static final String REGISTRATION = "http://54.187.29.169/android/prof/register.php";
+    public static final String GET_COURSES = "http://54.187.29.169/android/prof/getCourse.php";
     public static final String CHANGE_PASSWORD = "http://54.187.29.169/android/prof/changePassword.php";
     public static final String NOTIFY = "http://54.187.29.169/android/prof/notify.php";
     public static final String ADD_COURSE = "http://54.187.29.169/android/prof/addCourse.php";
@@ -96,4 +105,5 @@ public class Variables_it {
     public static final String EDIT_COURSE_OK = "Corso modificato correttamente";
     public static final String SEND_MSG_OK = "Messaggio inviato correttamente";
     public static final String ERROR = "Ops qualcosa è andato storto...";
+    public static final String NO_COURSE = "Nessun corso presente";
 }

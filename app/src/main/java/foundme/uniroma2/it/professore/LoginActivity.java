@@ -21,43 +21,27 @@
 package foundme.uniroma2.it.professore;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends Activity {
 
-    public static SharedPreferences pref;
+    private static SharedPreferences pref;
 
-    public static String user = null;
-    public static String pass = null;
-    private TextView tvRegistration;
-    private EditText etUser;
-    private EditText etPpass;
-    private Button btAccess;
-    private String TAG = null;
+    private static String user = null;
+    private static String pass = null;
+    private static TextView tvRegistration;
+    private static EditText etUser;
+    private static EditText etPpass;
+    private static Button btAccess;
+    private static String TAG = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +55,11 @@ public class LoginActivity extends Activity {
         etUser = (EditText) findViewById(R.id.etUserName);
         etPpass = (EditText) findViewById(R.id.etPassword);
         tvRegistration = (TextView) findViewById(R.id.tvRegistration);
+
+        Bundle passedTAG = getIntent().getExtras();
+        if (passedTAG != null) {
+            TAG = passedTAG.getString(Variables_it.TAG);
+        }
 
         tvRegistration.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
@@ -86,7 +75,13 @@ public class LoginActivity extends Activity {
                 pass = etPpass.getText().toString();
                 pass = computeSHAHash.sha1(pass);
 
-                new Login().execute(user,pass);
+                try {
+                    manageLogin(user, pass);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -99,79 +94,30 @@ public class LoginActivity extends Activity {
         if (user == null || user.isEmpty() || pass == null || pass.isEmpty()) {
             return;
         }
-        new Login().execute(user,pass);
-    }
-
-    public class Login extends AsyncTask<String, Void, String> {
-
-        private String result = null;
-        private String line = null;
-        private InputStream is = null;
-        private ProgressDialog caricamento;
-
-        @Override
-        protected void onPreExecute() {
-            caricamento = ProgressDialog.show(LoginActivity.this, Variables_it.WAIT, Variables_it.LOGGING_IN);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
-            nameValuePairs.add(new BasicNameValuePair(Variables_it.MAIL, params[0]));
-            nameValuePairs.add(new BasicNameValuePair(Variables_it.PASS, params[1]));
-
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Variables_it.LOGIN);
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                is = entity.getContent();
-            } catch (Exception e) {
-                return Variables_it.INVALID_IP;
-            }
-
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, Variables_it.ISO), 8);
-                StringBuilder sb = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                is.close();
-                result = sb.toString();
-            } catch (Exception e) {
-                return Variables_it.FAIL_CONNECTION;
-            }
-
-            try {
-                JSONObject json_data = new JSONObject(result.substring(result.indexOf("{"), result.lastIndexOf("}") + 1));
-                return (json_data.getString(Variables_it.NAME));
-            } catch (Exception e) {
-                return Variables_it.JSON_FAILURE;
-            }
-        }
-
-        protected void onPostExecute(String result) {
-            caricamento.dismiss();
-            if (result.equalsIgnoreCase(Variables_it.INVALID_IP) || result.equalsIgnoreCase(Variables_it.FAIL_CONNECTION) || result.equalsIgnoreCase(Variables_it.JSON_FAILURE))
-                Toast.makeText(LoginActivity.this, Variables_it.ERROR, Toast.LENGTH_LONG).show();
-            else {
-                Bundle passedTAG = getIntent().getExtras();
-                if (passedTAG != null) {
-                    TAG = passedTAG.getString(Variables_it.TAG);
-                }
-                SPEditor.setUser(pref,user);
-                SPEditor.setPass(pref,pass);
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                intent.putExtra(Variables_it.NAME, result);
-                intent.putExtra(Variables_it.TAG, TAG);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
+        try {
+            manageLogin(user, pass);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
+    void manageLogin(String user, String pass) throws ExecutionException, InterruptedException {
+        new Connection(this, true, Variables_it.LOGGING_IN, Variables_it.NAME, Variables_it.LOG)
+                .execute(Variables_it.LOGIN, Variables_it.MAIL, user, Variables_it.PASS, pass);
+    }
+
+    public static String getuser() {
+        return user;
+    }
+
+    public static String getpass() {
+        return pass;
+    }
+
+    public static String gettag() {
+        return TAG;
+    }
 }
 

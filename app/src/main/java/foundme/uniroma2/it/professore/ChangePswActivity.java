@@ -21,44 +21,28 @@
 package foundme.uniroma2.it.professore;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by simone on 02/06/2014.
  */
 public class ChangePswActivity extends Activity {
 
-    private SharedPreferences pref;
-
-    private EditText etMail;
-    private EditText etOldPsw;
-    private EditText etNewPsw0;
-    private EditText etNewPsw1;
-    private Button btConfirm;
-    private String mail = null;
-    private String oldPass = null;
-    private String newPass0 = null;
-    private String newPass1 = null;
+    private static EditText etMail;
+    private static EditText etOldPsw;
+    private static EditText etNewPsw0;
+    private static EditText etNewPsw1;
+    private static Button btConfirm;
+    private static String mail = null;
+    private static String oldPass = null;
+    private static String newPass0 = null;
+    private static String newPass1 = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,85 +67,27 @@ public class ChangePswActivity extends Activity {
                 } else {
                     newPass0 = computeSHAHash.sha1(newPass0);
                     oldPass = computeSHAHash.sha1(oldPass);
-                    new Change().execute(mail, oldPass, newPass0);
+                    try {
+                        managePass(mail, oldPass, newPass0);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
+    }
+
+    void managePass(String mail, String oldPass, String newPass0) throws ExecutionException, InterruptedException {
+        new Connection(this, true, Variables_it.MODIFYING, Variables_it.PASS_CHANGED, Variables_it.CHANGEP).execute(Variables_it.CHANGE_PASSWORD, Variables_it.MAIL, mail, Variables_it.OLD_PASS, oldPass, Variables_it.NEW_PASS, newPass0);
     }
 
     private boolean checkData(String mail, String old, String new1, String new2) {
         return !(mail == null || old == null || new1 == null || new2 == null || mail.isEmpty() || old.isEmpty() || new1.isEmpty() || new2.isEmpty() || !new1.equals(new2) || old.equals(new1) || new1.length() < 8);
     }
 
-    private class Change extends AsyncTask<String, Void, String> {
-
-        private String result = null;
-        private String line = null;
-        private InputStream is = null;
-        private int code;
-        private ProgressDialog caricamento;
-
-        @Override
-        protected void onPreExecute() {
-            caricamento = ProgressDialog.show(ChangePswActivity.this, Variables_it.WAIT, Variables_it.MODIFYING);
-        }
-
-
-        @Override
-        protected String doInBackground(String... params) {
-            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
-            nameValuePairs.add(new BasicNameValuePair(Variables_it.MAIL, params[0]));
-            nameValuePairs.add(new BasicNameValuePair(Variables_it.OLD_PASS, params[1]));
-            nameValuePairs.add(new BasicNameValuePair(Variables_it.NEW_PASS, params[2]));
-
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Variables_it.CHANGE_PASSWORD);
-                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                is = entity.getContent();
-            } catch (Exception e) {
-                return Variables_it.INVALID_IP;
-            }
-
-            try {
-                BufferedReader reader = new BufferedReader
-                        (new InputStreamReader(is, Variables_it.ISO), 8);
-                StringBuilder sb = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                is.close();
-                result = sb.toString();
-            } catch (Exception e) {
-                return Variables_it.FAIL_CONNECTION;
-            }
-
-            try {
-                JSONObject json_data = new JSONObject(result.substring(result.indexOf("{"), result.lastIndexOf("}") + 1));
-                code = (json_data.getInt(Variables_it.CODE));
-
-                if (code == 1) {
-                    return Variables_it.PASS_CHANGED;
-                } else {
-                    return Variables_it.ERROR;
-                }
-            } catch (Exception e) {
-                return Variables_it.JSON_FAILURE;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            caricamento.dismiss();
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
-            if (code == 1) {
-                pref = SPEditor.init(ChangePswActivity.this.getApplicationContext());
-                SPEditor.setPass(pref, newPass0);
-                finish();
-            }
-        }
+    public static String getpass() {
+        return newPass0;
     }
 }
