@@ -79,7 +79,7 @@ public class ChangePswActivity extends Activity {
         });
     }
 
-    void managePass(String mail, String oldPass, String newPass0) throws ExecutionException, InterruptedException {
+    private void managePass(String mail, String oldPass, String newPass0) throws ExecutionException, InterruptedException {
         new Connection(this, true, Variables_it.MODIFYING, Variables_it.PASS_CHANGED, Variables_it.CHANGEP).execute(Variables_it.CHANGE_PASSWORD, Variables_it.MAIL, mail, Variables_it.OLD_PASS, oldPass, Variables_it.NEW_PASS, newPass0);
     }
 

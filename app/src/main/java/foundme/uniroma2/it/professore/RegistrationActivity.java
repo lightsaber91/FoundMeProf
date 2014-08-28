@@ -86,13 +86,13 @@ public class RegistrationActivity extends Activity {
 
     }
 
-    void manageRegistration(String name, String pass, String mail, String dept) throws ExecutionException, InterruptedException {
+    private void manageRegistration(String name, String pass, String mail, String dept) throws ExecutionException, InterruptedException {
         pass = computeSHAHash.sha1(pass);
         new Connection(this, true, Variables_it.SING_UP, Variables_it.SIGN_UP_OK, Variables_it.REGIS)
                 .execute(Variables_it.REGISTRATION, Variables_it.NAME, name, Variables_it.PASS, pass, Variables_it.MAIL, mail, Variables_it.DEPT, dept);
     }
 
-    boolean checkLoginData(String pass1, String pass2, String mail1, String mail2) {
+    private boolean checkLoginData(String pass1, String pass2, String mail1, String mail2) {
         if (pass1.equals(pass2) && mail1.equals(mail2)) {
             int l = pass1.length();
             return l >= 8;

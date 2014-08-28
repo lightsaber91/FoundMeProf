@@ -84,7 +84,7 @@ public class EditCourseActivity extends Activity {
         });
     }
 
-    void manageCourse(String title, String newCfu, String Prof1, String newProf2, String newProf3) throws ExecutionException, InterruptedException {
+    private void manageCourse(String title, String newCfu, String Prof1, String newProf2, String newProf3) throws ExecutionException, InterruptedException {
         new Connection(this, true, Variables_it.MODIFYING, Variables_it.EDIT_COURSE_OK, Variables_it.FINISH)
                 .execute(Variables_it.EDIT_COURSE, Variables_it.COURSE, title, Variables_it.CFU, newCfu, Variables_it.NAME_1, Prof1, Variables_it.NAME_2, newProf2, Variables_it.NAME_3, newProf3);
     }

@@ -89,7 +89,7 @@ public class CoursesActivity extends Activity {
         });
     }
 
-    void manageCourse(String cid, String pid, String room, String hours) throws ExecutionException, InterruptedException {
+    private void manageCourse(String cid, String pid, String room, String hours) throws ExecutionException, InterruptedException {
         new Connection(this, true, Variables_it.LOGGING_IN, Variables_it.SEND_NOTIF_OK, "")
                 .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.ROOM, room, Variables_it.TIME, hours, Variables_it.FLAG, "0");
     }

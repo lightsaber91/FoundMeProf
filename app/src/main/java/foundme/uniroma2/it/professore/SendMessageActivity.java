@@ -71,7 +71,7 @@ public class SendMessageActivity extends Activity {
 
     }
 
-    void manageMsg(String cid, String pid, String msg) throws ExecutionException, InterruptedException {
+    private void manageMsg(String cid, String pid, String msg) throws ExecutionException, InterruptedException {
         new Connection(this, false, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1");
         new Connection(this, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")

@@ -103,7 +103,7 @@ public class LoginActivity extends Activity {
         }
     }
 
-    void manageLogin(String user, String pass) throws ExecutionException, InterruptedException {
+    private void manageLogin(String user, String pass) throws ExecutionException, InterruptedException {
         new Connection(this, true, Variables_it.LOGGING_IN, Variables_it.NAME, Variables_it.LOG)
                 .execute(Variables_it.LOGIN, Variables_it.MAIL, user, Variables_it.PASS, pass);
     }

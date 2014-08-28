@@ -87,7 +87,7 @@ public class AddCourseActivity extends Activity {
         });
     }
 
-    void manageCourse(String name1, String name2, String name3, String title, String cfu) throws ExecutionException, InterruptedException {
+    private void manageCourse(String name1, String name2, String name3, String title, String cfu) throws ExecutionException, InterruptedException {
         new Connection(this, true, Variables_it.ADDING, Variables_it.ADD_COURSE_OK, Variables_it.FINISH)
                 .execute(Variables_it.ADD_COURSE, Variables_it.NAME_1, name1, Variables_it.NAME_2, name2, Variables_it.NAME_3, name3, Variables_it.COURSE, title, Variables_it.CFU, cfu);
     }

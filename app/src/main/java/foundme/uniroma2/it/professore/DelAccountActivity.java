@@ -74,7 +74,7 @@ public class DelAccountActivity extends Activity {
 
     }
 
-    void manageCourse(String mail, String pass) throws ExecutionException, InterruptedException {
+    private void manageCourse(String mail, String pass) throws ExecutionException, InterruptedException {
         new Connection(this, true, Variables_it.DELETION, Variables_it.DEL_ACCOUNT_OK, Variables_it.DELACC)
                 .execute(Variables_it.DEL_ACCOUNT, Variables_it.MAIL, mail, Variables_it.PASS, pass);
     }
