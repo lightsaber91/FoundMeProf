@@ -174,7 +174,7 @@ public class Connection extends AsyncTask<String, Void, String[]> {
         else if (code == 1 && toDo.equalsIgnoreCase(Variables_it.FINISH)) {
             ((Activity) context).finish();
             try {
-                HomeActivity.getCourse(false);
+                HomeActivity.getCourse(true);
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
