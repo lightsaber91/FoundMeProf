@@ -75,6 +75,7 @@ public class Variables_it {
     public static final String FLAG = "Flag";
     public static final String CFU = "Cfu";
     public static final String MSG = "Messaggio";
+    public static final String TITLE = "Titolo";
     public static final String DEPT = "Dipartimento";
 
     //Web Addresses

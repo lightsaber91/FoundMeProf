@@ -74,6 +74,7 @@
     <string name="str_action3">Action3</string>
     <string name="aggiungi">Aggiungi Corso</string>
     <string name="scrivi">Inserisci il testo del messaggio</string>
+    <string name="titolo">Titolo del messaggio</string>
 
     <!-- Resources -->
     <string name="pref_title_sync_frequency"></string>

@@ -32,11 +32,13 @@ import java.util.concurrent.ExecutionException;
 
 public class SendMessageActivity extends Activity {
 
-    private EditText etMessage;
-    private Button btInvia;
-    private String messaggio;
-    private String cid;
-    private String pid;
+    private static EditText etMessage;
+    private static EditText etTitle;
+    private static Button btInvia;
+    private static String messaggio;
+    private static String titolo;
+    private static String cid;
+    private static String pid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class SendMessageActivity extends Activity {
         setContentView(R.layout.activity_send_message);
 
         etMessage = (EditText) findViewById(R.id.etmessaggio);
+        etTitle = (EditText) findViewById(R.id.etmsgTitle);
         btInvia = (Button) findViewById(R.id.btninv);
 
         Bundle passed = getIntent().getExtras();
@@ -54,9 +57,10 @@ public class SendMessageActivity extends Activity {
         btInvia.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 messaggio = etMessage.getText().toString();
-                if (checkMessage(messaggio)) {
+                titolo = etTitle.getText().toString();
+                if (checkMessage(messaggio, titolo)) {
                     try {
-                        manageMsg(cid, pid, messaggio);
+                        manageMsg(cid, pid, messaggio, titolo);
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -71,14 +75,14 @@ public class SendMessageActivity extends Activity {
 
     }
 
-    private void manageMsg(String cid, String pid, String msg) throws ExecutionException, InterruptedException {
+    private void manageMsg(String cid, String pid, String msg, String title) throws ExecutionException, InterruptedException {
         new Connection(this, false, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1");
         new Connection(this, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
-                .execute(Variables_it.SEND_MSG, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1");
+                .execute(Variables_it.SEND_MSG, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1", Variables_it.TITLE,title);
     }
 
-    private boolean checkMessage(String msg) {
-        return !(msg == null || msg.isEmpty());
+    private boolean checkMessage(String msg, String title) {
+        return !(msg == null || msg.isEmpty() || title == null || title.isEmpty());
     }
 }
