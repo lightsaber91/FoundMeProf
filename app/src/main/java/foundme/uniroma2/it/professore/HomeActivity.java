@@ -266,10 +266,11 @@ public class HomeActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.logout:
-                pref = SPEditor.init(HomeActivity.this.getApplicationContext());
+                pref = SPEditor.init(context);
                 SPEditor.delete(pref);
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.action_settings:
                 Intent intent2 = new Intent(this, SettingsActivity.class);
