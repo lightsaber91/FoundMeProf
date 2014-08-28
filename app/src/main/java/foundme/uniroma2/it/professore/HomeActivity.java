@@ -153,7 +153,7 @@ public class HomeActivity extends Activity {
 
         lvCourses = (ListView) findViewById(R.id.lvCourses);
 
-        if (name != null && courses == null) {
+        if (name != null /*&& courses == null*/) {
             try {
                 getCourse(true);
             } catch (ExecutionException e) {

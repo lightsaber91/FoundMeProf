@@ -152,7 +152,9 @@ public class Connection extends AsyncTask<String, Void, String[]> {
         if (enProgressDialog) {
             caricamento.dismiss();
             if (!returnMessage.equalsIgnoreCase(Variables_it.NAME) || result[0].equalsIgnoreCase(Variables_it.ERROR)) {
-                Toast.makeText(context, result[0], Toast.LENGTH_LONG).show();
+                if(!returnMessage.equalsIgnoreCase("")) {
+                    Toast.makeText(context, result[0], Toast.LENGTH_LONG).show();
+                }
             }
         }
         if(toDo.equalsIgnoreCase(Variables_it.GET)){
