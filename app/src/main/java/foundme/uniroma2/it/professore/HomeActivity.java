@@ -92,20 +92,24 @@ public class HomeActivity extends Activity {
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.edit:
-                        Intent i = new Intent(HomeActivity.this, EditCourseActivity.class);
-                        i.putExtra(Variables_it.COURSE, toEdit);
-                        i.putExtra(Variables_it.NAME, name);
-                        startActivity(i);
+                        if(!toEdit.equalsIgnoreCase(Variables_it.NO_COURSE)) {
+                            Intent i = new Intent(HomeActivity.this, EditCourseActivity.class);
+                            i.putExtra(Variables_it.COURSE, toEdit);
+                            i.putExtra(Variables_it.NAME, name);
+                            startActivity(i);
+                        }
                         toEdit = null;
-                        mode.finish();    // Automatically exists the action mode, when the user selects this action
+                        mode.finish(); // Automatically exists the action mode, when the user selects this action
                         break;
                     case R.id.delete:
-                        try {
-                            manageCourse(name, toEdit);
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        if(!toEdit.equalsIgnoreCase(Variables_it.NO_COURSE)) {
+                            try {
+                                manageCourse(name, toEdit);
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                         toEdit = null;
                         mode.finish();
@@ -240,11 +244,13 @@ public class HomeActivity extends Activity {
         lvCourses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(context, CoursesActivity.class);
-                i.putExtra(Variables_it.COURSE, courses[position]);
-                i.putExtra(Variables_it.NAME, name);
-                i.putExtra(Variables_it.ROOM, nfctest.getText().toString());
-                context.startActivity(i);
+                if(!courses[position].equalsIgnoreCase(Variables_it.NO_COURSE)) {
+                    Intent i = new Intent(context, CoursesActivity.class);
+                    i.putExtra(Variables_it.COURSE, courses[position]);
+                    i.putExtra(Variables_it.NAME, name);
+                    i.putExtra(Variables_it.ROOM, nfctest.getText().toString());
+                    context.startActivity(i);
+                }
             }
         });
     }
