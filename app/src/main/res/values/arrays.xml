@@ -24,4 +24,9 @@
     <string-array name="pref_sync_frequency_values" />
     <string-array name="pref_example_list_titles" />
     <string-array name="pref_example_list_values" />
+    <string-array name="Priority">
+        <item>Normale</item>
+        <item>Alta</item>
+        <item>Bassa</item>
+    </string-array>
 </resources>

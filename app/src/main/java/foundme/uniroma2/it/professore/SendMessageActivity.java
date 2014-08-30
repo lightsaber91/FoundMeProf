@@ -23,11 +23,17 @@ package foundme.uniroma2.it.professore;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
+
+import static android.widget.ArrayAdapter.*;
 
 
 public class SendMessageActivity extends Activity {
@@ -39,6 +45,8 @@ public class SendMessageActivity extends Activity {
     private static String titolo;
     private static String cid;
     private static String pid;
+    private static String priority;
+    private static Spinner spPriority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,33 @@ public class SendMessageActivity extends Activity {
         etMessage = (EditText) findViewById(R.id.etmessaggio);
         etTitle = (EditText) findViewById(R.id.etmsgTitle);
         btInvia = (Button) findViewById(R.id.btninv);
+        spPriority = (Spinner) findViewById(R.id.spPriority);
+
+        ArrayAdapter<CharSequence> adapter = createFromResource(this,
+                R.array.Priority, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPriority.setAdapter(adapter);
+
+        spPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            protected Adapter initializedAdapter=null;
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+            {
+                if(initializedAdapter !=parentView.getAdapter() ) {
+                    initializedAdapter = parentView.getAdapter();
+                    return;
+                }
+
+                priority = parentView.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                priority = parentView.getItemAtPosition(0).toString();
+            }
+        });
 
         Bundle passed = getIntent().getExtras();
         cid = passed.getString(Variables_it.COURSE);
@@ -79,7 +114,7 @@ public class SendMessageActivity extends Activity {
         new Connection(this, false, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1");
         new Connection(this, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
-                .execute(Variables_it.SEND_MSG, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1", Variables_it.TITLE,title);
+                .execute(Variables_it.SEND_MSG, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1", Variables_it.TITLE,title, Variables_it.PRIORITY, priority);
     }
 
     private boolean checkMessage(String msg, String title) {
