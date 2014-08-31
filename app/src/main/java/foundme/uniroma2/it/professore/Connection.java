@@ -153,12 +153,15 @@ public class Connection extends AsyncTask<String, Void, String[]> {
             caricamento.dismiss();
             if (!returnMessage.equalsIgnoreCase(Variables_it.NAME) || result[0].equalsIgnoreCase(Variables_it.ERROR)) {
                 if(!returnMessage.equalsIgnoreCase("")) {
-                    Toast.makeText(context, result[0], Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, result[0], Toast.LENGTH_SHORT).show();
                 }
             }
         }
         if(toDo.equalsIgnoreCase(Variables_it.GET)){
             HomeActivity.populateView(result);
+        }
+        else if(returnMessage.equalsIgnoreCase(Variables_it.SEND_MSG_OK)) {
+            ((Activity) context).finish();
         }
         else if (returnMessage.equalsIgnoreCase(Variables_it.NAME) && toDo.equalsIgnoreCase(Variables_it.LOG) && !result[0].equalsIgnoreCase(Variables_it.ERROR)) {
             SharedPreferences pref = SPEditor.init(context);

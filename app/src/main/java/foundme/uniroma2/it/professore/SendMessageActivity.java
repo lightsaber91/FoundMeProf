@@ -21,7 +21,9 @@
 package foundme.uniroma2.it.professore;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -45,13 +47,16 @@ public class SendMessageActivity extends Activity {
     private static String titolo;
     private static String cid;
     private static String pid;
-    private static String priority;
+    private static String priority = "Normale";
     private static Spinner spPriority;
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
+
+        context = this;
 
         etMessage = (EditText) findViewById(R.id.etmessaggio);
         etTitle = (EditText) findViewById(R.id.etmsgTitle);
@@ -80,7 +85,7 @@ public class SendMessageActivity extends Activity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                priority = parentView.getItemAtPosition(0).toString();
+                //
             }
         });
 
@@ -96,7 +101,7 @@ public class SendMessageActivity extends Activity {
                 if (checkMessage(messaggio, titolo)) {
                     try {
                         manageMsg(cid, pid, messaggio, titolo);
-                        finish();
+                        //finish();
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -111,9 +116,10 @@ public class SendMessageActivity extends Activity {
     }
 
     private void manageMsg(String cid, String pid, String msg, String title) throws ExecutionException, InterruptedException {
-        new Connection(this, false, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
+        Log.e("Priorita", priority);
+        new Connection(context, false, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1");
-        new Connection(this, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
+        new Connection(context, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.SEND_MSG, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1", Variables_it.TITLE,title, Variables_it.PRIORITY, priority);
     }
 
