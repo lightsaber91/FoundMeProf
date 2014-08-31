@@ -96,12 +96,12 @@ public class SendMessageActivity extends Activity {
                 if (checkMessage(messaggio, titolo)) {
                     try {
                         manageMsg(cid, pid, messaggio, titolo);
+                        finish();
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 } else
                     Toast.makeText(SendMessageActivity.this, Variables_it.FILL_FIELD, Toast.LENGTH_SHORT).show();
 
