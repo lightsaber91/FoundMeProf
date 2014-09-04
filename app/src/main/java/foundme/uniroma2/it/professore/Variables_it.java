@@ -72,7 +72,8 @@ public class Variables_it {
     public static final String NAME_2 = "Nome2";
     public static final String NAME_3 = "Nome3";
     public static final String ROOM = "Aula";
-    public static final String TIME = "Minuti";
+    public static final String HOUR = "Ore";
+    public static final String MIN = "Minuti";
     public static final String FLAG = "Flag";
     public static final String CFU = "Cfu";
     public static final String MSG = "Messaggio";

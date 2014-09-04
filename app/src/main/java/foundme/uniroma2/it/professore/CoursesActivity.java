@@ -40,6 +40,7 @@ public class CoursesActivity extends Activity {
     private Button btSendMsg;
     private String cid;
     private String pid;
+    private String hours;
     private String minutes;
     private String room;
     private TimePicker tpTime;
@@ -84,13 +85,12 @@ public class CoursesActivity extends Activity {
             public void onClick(View arg0) {
                 room = etRoom.getText().toString();
 
-                Log.e("Minuti", Integer.toString(minut));
-                Log.e("Ore", Integer.toString(hour));
-                minutes = Integer.toString(0);
+                hours = Integer.toString(hour);
+                minutes = Integer.toString(minut);
 
-                if (checkData(room, minutes)) {
+                if (checkData(room, minutes, hours)) {
                     try {
-                        manageCourse(cid, pid, room, minutes);
+                        manageCourse(cid, pid, room, hours,minutes);
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -109,11 +109,11 @@ public class CoursesActivity extends Activity {
             }
         });
     }
-    private void manageCourse(String cid, String pid, String room, String hours) throws ExecutionException, InterruptedException {
+    private void manageCourse(String cid, String pid, String room, String hours, String minutes) throws ExecutionException, InterruptedException {
         new Connection(this, true, Variables_it.LOGGING_IN, Variables_it.SEND_NOTIF_OK, "")
-                .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.ROOM, room, Variables_it.TIME, hours, Variables_it.FLAG, "0");
+                .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.ROOM, room, Variables_it.MIN, minutes, Variables_it.HOUR, hours,Variables_it.FLAG, "0");
     }
-    boolean checkData(String room, String min) {
-        return !(room == null || min == null || min.isEmpty() || room.isEmpty());
+    boolean checkData(String room, String min, String hours) {
+        return !(room == null || min == null || min.isEmpty() || room.isEmpty() || hours == null || hours.isEmpty());
     }
 }
