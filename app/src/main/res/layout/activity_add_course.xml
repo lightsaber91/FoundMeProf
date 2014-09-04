@@ -67,7 +67,8 @@
         android:text="@string/submitCourse"
         android:id="@+id/btSubmit"
         android:layout_below="@+id/etName3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#ff429874" />
 
     <ImageView
         android:layout_width="wrap_content"
