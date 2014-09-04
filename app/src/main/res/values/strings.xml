@@ -67,7 +67,7 @@
     <string name="service_comunication">Comunicazioni</string>
     <string name="send_notification">Invia Notifica</string>
     <string name="send_message">Invia Messaggio</string>
-    <string name="duration">Durata Ricevimento in Ore</string>
+    <string name="duration">Selezionare l\'orario di fine ricevimento</string>
     <string name="room">Stanza Ricevimento</string>
     <string name="str_action1">edit</string>
     <string name="str_action2">delete</string>
@@ -76,6 +76,9 @@
     <string name="scrivi">Inserisci il testo del messaggio</string>
     <string name="titolo">Titolo del messaggio</string>
     <string name="priority">Priorità del messaggio:</string>
+    <string name="speek">Parla</string>
+    <string name="speech_prompt">Parla&#8230;</string>
+    <string name="speech_not_supported">Spiecente il tuo dispositivo non supporta questa funzionalità</string>
 
     <!-- Resources -->
     <string name="pref_title_sync_frequency"></string>

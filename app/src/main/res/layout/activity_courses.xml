@@ -23,15 +23,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/send_notification"
-        android:id="@+id/btnSendNotify"
-        android:layout_below="@+id/etTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,18 +43,15 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvCourseName" />
 
-    <EditText
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/etTime"
-        android:hint="@string/duration"
-        android:layout_below="@+id/etRoom"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="@string/send_message"
+        android:id="@+id/btnSendMsg"
+        android:background="#ff429874"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/tvComunications"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="match_parent"
@@ -71,17 +59,46 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/service_comunication"
         android:id="@+id/tvComunications"
-        android:layout_marginTop="71dp"
         android:layout_below="@+id/btnSendNotify"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/etRoom"
+        android:layout_alignParentStart="true">
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timePicker"
+            android:layout_alignTop="@+id/btnSendNotify"
+            android:layout_alignStart="@+id/btnSendMsg"
+            android:theme="@style/AppTheme" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/duration"
+            android:id="@+id/textView"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/send_message"
-        android:id="@+id/btnSendMsg"
-        android:layout_below="@+id/tvComunications"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/send_notification"
+        android:id="@+id/btnSendNotify"
+        android:background="#ff429874"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center_vertical"
+        android:layout_toEndOf="@+id/btnSendMsg"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignStart="@+id/btnSendMsg"
+        android:layout_alignEnd="@+id/btnSendMsg" />
 
 </RelativeLayout>

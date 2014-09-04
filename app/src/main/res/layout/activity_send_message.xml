@@ -70,19 +70,28 @@
         android:background="#ff429874"
         android:textColor="@android:color/white"
         android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/etmessaggio"
         android:hint="@string/scrivi"
         android:gravity="start"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/btninv"
-        android:layout_below="@+id/linearLayout" />
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:id="@+id/btnSpeak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ico_mic"
+        android:layout_alignBottom="@+id/etmessaggio"
+        android:layout_alignEnd="@+id/btninv" />
 
 </RelativeLayout>

@@ -21,8 +21,11 @@
 package foundme.uniroma2.it.professore;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -30,9 +33,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import static android.widget.ArrayAdapter.*;
@@ -47,9 +53,11 @@ public class SendMessageActivity extends Activity {
     private static String titolo;
     private static String cid;
     private static String pid;
-    private static String priority = "Normale";
+    private static String priority;
     private static Spinner spPriority;
     private static Context context;
+    private static ImageButton btnSpeak;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +66,21 @@ public class SendMessageActivity extends Activity {
 
         context = this;
 
+        btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
         etMessage = (EditText) findViewById(R.id.etmessaggio);
         etTitle = (EditText) findViewById(R.id.etmsgTitle);
         btInvia = (Button) findViewById(R.id.btninv);
         spPriority = (Spinner) findViewById(R.id.spPriority);
 
-        ArrayAdapter<CharSequence> adapter = createFromResource(this,
+        btnSpeak.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                promptSpeechInput();
+            }
+        });
+
+        final ArrayAdapter<CharSequence> adapter = createFromResource(this,
                 R.array.Priority, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spPriority.setAdapter(adapter);
@@ -88,6 +105,8 @@ public class SendMessageActivity extends Activity {
                 //
             }
         });
+        if (priority == null)
+            priority = "Normale";
 
         Bundle passed = getIntent().getExtras();
         cid = passed.getString(Variables_it.COURSE);
@@ -98,7 +117,7 @@ public class SendMessageActivity extends Activity {
             public void onClick(View arg0) {
                 messaggio = etMessage.getText().toString();
                 titolo = etTitle.getText().toString();
-                if (checkMessage(messaggio, titolo)) {
+                if (checkMessage(messaggio, titolo, priority)) {
                     try {
                         manageMsg(cid, pid, messaggio, titolo);
                         //finish();
@@ -115,15 +134,49 @@ public class SendMessageActivity extends Activity {
 
     }
 
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.speech_not_supported),
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    etMessage.setText(result.get(0));
+                }
+                break;
+            }
+
+        }
+    }
+
+
     private void manageMsg(String cid, String pid, String msg, String title) throws ExecutionException, InterruptedException {
-        Log.e("Priorita", priority);
         new Connection(context, false, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1");
         new Connection(context, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.SEND_MSG, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1", Variables_it.TITLE,title, Variables_it.PRIORITY, priority);
     }
 
-    private boolean checkMessage(String msg, String title) {
-        return !(msg == null || msg.isEmpty() || title == null || title.isEmpty());
+    private boolean checkMessage(String msg, String title, String priority) {
+        return !(msg == null || msg.isEmpty() || title == null || title.isEmpty() || priority == null || priority.isEmpty());
     }
 }
