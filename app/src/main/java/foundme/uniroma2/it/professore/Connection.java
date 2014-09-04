@@ -25,6 +25,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -79,6 +81,12 @@ public class Connection extends AsyncTask<String, Void, String[]> {
 
     @Override
     protected String[] doInBackground(String... params) {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if(!isConnected)
+            return new String[]{Variables_it.NO_INTERNET};
+
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         for (int i = 1; i < params.length; i = i + 2) {
             nameValuePairs.add(new BasicNameValuePair(params[i], params[i + 1]));
@@ -149,6 +157,12 @@ public class Connection extends AsyncTask<String, Void, String[]> {
 
     @Override
     protected void onPostExecute(String result[]) {
+        if(result[0].equalsIgnoreCase(Variables_it.NO_INTERNET)) {
+            if (enProgressDialog)
+                caricamento.dismiss();
+            Toast.makeText(context, result[0], Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (enProgressDialog) {
             caricamento.dismiss();
             if (!returnMessage.equalsIgnoreCase(Variables_it.NAME) || result[0].equalsIgnoreCase(Variables_it.ERROR)) {

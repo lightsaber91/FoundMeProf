@@ -110,4 +110,6 @@ public class Variables_it {
     public static final String SEND_MSG_OK = "Messaggio inviato correttamente";
     public static final String ERROR = "Ops qualcosa è andato storto...";
     public static final String NO_COURSE = "Nessun corso presente";
+    public static final String NO_INTERNET = "Nessuna connesione ad internet";
+
 }
