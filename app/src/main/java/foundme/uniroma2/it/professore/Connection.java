@@ -160,7 +160,7 @@ public class Connection extends AsyncTask<String, Void, String[]> {
         if(toDo.equalsIgnoreCase(Variables_it.GET)){
             HomeActivity.populateView(result);
         }
-        else if(returnMessage.equalsIgnoreCase(Variables_it.SEND_MSG_OK)) {
+        else if(returnMessage.equalsIgnoreCase(Variables_it.SEND_MSG_OK) && toDo.equalsIgnoreCase(Variables_it.MSGS)) {
             ((Activity) context).finish();
         }
         else if (returnMessage.equalsIgnoreCase(Variables_it.NAME) && toDo.equalsIgnoreCase(Variables_it.LOG) && !result[0].equalsIgnoreCase(Variables_it.ERROR)) {

@@ -52,6 +52,7 @@ public class Variables_it {
     public static final String REGIS = "R";
     public static final String LOG = "L";
     public static final String GET = "G";
+    public static final String MSGS = "M";
 
     //NFC Fields
     public static final String TAG = "Tag";

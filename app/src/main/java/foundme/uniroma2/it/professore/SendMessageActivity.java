@@ -120,7 +120,6 @@ public class SendMessageActivity extends Activity {
                 if (checkMessage(messaggio, titolo, priority)) {
                     try {
                         manageMsg(cid, pid, messaggio, titolo);
-                        //finish();
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -172,7 +171,7 @@ public class SendMessageActivity extends Activity {
     private void manageMsg(String cid, String pid, String msg, String title) throws ExecutionException, InterruptedException {
         new Connection(context, false, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
                 .execute(Variables_it.NOTIFY, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1");
-        new Connection(context, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, "")
+        new Connection(context, true, Variables_it.SENDING, Variables_it.SEND_MSG_OK, Variables_it.MSGS)
                 .execute(Variables_it.SEND_MSG, Variables_it.COURSE, cid, Variables_it.NAME, pid, Variables_it.MSG, msg, Variables_it.FLAG, "1", Variables_it.TITLE,title, Variables_it.PRIORITY, priority);
     }
 
