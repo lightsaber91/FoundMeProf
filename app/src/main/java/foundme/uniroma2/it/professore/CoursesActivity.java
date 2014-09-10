@@ -38,6 +38,7 @@ public class CoursesActivity extends Activity {
     private TextView tvCourseName;
     private EditText etRoom;
     private Button btSendMsg;
+    private Button btReadMsg;
     private String cid;
     private String pid;
     private String hours;
@@ -60,6 +61,7 @@ public class CoursesActivity extends Activity {
 
         btSendNotify = (Button) findViewById(R.id.btnSendNotify);
         btSendMsg = (Button) findViewById(R.id.btnSendMsg);
+        btReadMsg = (Button) findViewById(R.id.btnReadMsg);
         tvCourseName = (TextView) findViewById(R.id.tvCourseName);
         etRoom = (EditText) findViewById(R.id.etRoom);
         tpTime = (TimePicker) findViewById(R.id.timePicker);
@@ -77,6 +79,15 @@ public class CoursesActivity extends Activity {
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
                 hour = tpTime.getCurrentHour();
                 minut = tpTime.getCurrentMinute();
+            }
+        });
+
+        btReadMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent(CoursesActivity.this, ReadMessageActivity.class);
+                i.putExtra(Variables_it.COURSE, cid);
+                startActivity(i);
             }
         });
 

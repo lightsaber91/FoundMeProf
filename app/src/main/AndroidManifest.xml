@@ -96,6 +96,11 @@
             android:name=".SendMessageActivity"
             android:label="@string/title_activity_send_message" >
         </activity>
+        <activity
+            android:name=".ReadMessageActivity"
+            android:label="@string/title_msg">
+        </activity>
+
     </application>
 
 </manifest>

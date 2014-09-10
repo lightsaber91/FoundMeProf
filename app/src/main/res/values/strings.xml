@@ -28,6 +28,7 @@
     <string name="title_activity_registration">Registrazione</string>
     <string name="title_activity_home">Professore</string>
     <string name="title_activity_add">Aggiungi un Corso</string>
+    <string name="title_msg">Messaggi</string>
 
     <!-- Layout Hints -->
     <string name="action_settings">Settings</string>
@@ -67,6 +68,7 @@
     <string name="service_comunication">Comunicazioni</string>
     <string name="send_notification">Invia Notifica</string>
     <string name="send_message">Invia Messaggio</string>
+    <string name="read_msg">Leggi Messaggi</string>
     <string name="duration">Selezionare l\'orario di fine ricevimento</string>
     <string name="room">Stanza Ricevimento</string>
     <string name="str_action1">edit</string>

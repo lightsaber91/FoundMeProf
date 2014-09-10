@@ -145,6 +145,9 @@ public class Connection extends AsyncTask<String, Void, String[]> {
                 return new String[]{Variables_it.ERROR};
             }
         } catch (Exception e) {
+            if (returnMessage.equalsIgnoreCase(Variables_it.NO_MSG)) {
+                return new String[] {Variables_it.NO_MSG};
+            }
             if (returnMessage.equalsIgnoreCase(Variables_it.NAME)){
                 return new String[]{Variables_it.ERROR};
             }
@@ -157,7 +160,7 @@ public class Connection extends AsyncTask<String, Void, String[]> {
 
     @Override
     protected void onPostExecute(String result[]) {
-        if(result[0].equalsIgnoreCase(Variables_it.NO_INTERNET)) {
+        if (result[0].equalsIgnoreCase(Variables_it.NO_INTERNET)) {
             if (enProgressDialog)
                 caricamento.dismiss();
             Toast.makeText(context, result[0], Toast.LENGTH_SHORT).show();
@@ -166,15 +169,18 @@ public class Connection extends AsyncTask<String, Void, String[]> {
         if (enProgressDialog) {
             caricamento.dismiss();
             if (!returnMessage.equalsIgnoreCase(Variables_it.NAME) || result[0].equalsIgnoreCase(Variables_it.ERROR)) {
-                if(!returnMessage.equalsIgnoreCase("")) {
+                if(!returnMessage.equalsIgnoreCase("") && !returnMessage.equalsIgnoreCase(Variables_it.NO_MSG)) {
                     Toast.makeText(context, result[0], Toast.LENGTH_SHORT).show();
                 }
             }
         }
-        if(toDo.equalsIgnoreCase(Variables_it.GET)){
+        if (returnMessage.equalsIgnoreCase(Variables_it.NO_MSG)) {
+            ReadMessageActivity.populateView(result);
+        }
+        else if (toDo.equalsIgnoreCase(Variables_it.GET)){
             HomeActivity.populateView(result);
         }
-        else if(returnMessage.equalsIgnoreCase(Variables_it.SEND_MSG_OK) && toDo.equalsIgnoreCase(Variables_it.MSGS)) {
+        else if (returnMessage.equalsIgnoreCase(Variables_it.SEND_MSG_OK) && toDo.equalsIgnoreCase(Variables_it.MSGS)) {
             ((Activity) context).finish();
         }
         else if (returnMessage.equalsIgnoreCase(Variables_it.NAME) && toDo.equalsIgnoreCase(Variables_it.LOG) && !result[0].equalsIgnoreCase(Variables_it.ERROR)) {

@@ -34,6 +34,7 @@ public class Variables_it {
     public static final String ADDING = "Aggiunta in corso...";
     public static final String SENDING = "Invio messaggio in corso...";
     public static final String DELETION = "Cancellazione in corso...";
+    public static final String SHOW_MSG = "Lettura messaggi...";
 
     //Constant Fields
     public static final String FILL_FIELD = "Riempire i campi correttamente";
@@ -92,6 +93,7 @@ public class Variables_it {
     public static final String EDIT_COURSE = "http://54.187.29.169/android/prof/editCourse.php";
     public static final String DEL_COURSE = "http://54.187.29.169/android/prof/delCourse.php";
     public static final String SEND_MSG = "http://54.187.29.169/android/prof/writeMsg.php";
+    public static final String READING = "http://54.187.29.169/android/prof/getMsgList.php";
     public static final String SITE_TV = "http://didatticaweb.uniroma2.it/";
 
     //Connection Variables
@@ -110,6 +112,7 @@ public class Variables_it {
     public static final String SEND_MSG_OK = "Messaggio inviato correttamente";
     public static final String ERROR = "Ops qualcosa è andato storto...";
     public static final String NO_COURSE = "Nessun corso presente";
+    public static final String NO_MSG = "Nessun messaggio presente";
     public static final String NO_INTERNET = "Nessuna connesione ad internet";
 
 }
