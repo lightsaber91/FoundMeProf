@@ -48,7 +48,9 @@
     <string name="conf_password">Re-inserisci la password</string>
     <string name="reg_mail">Inserisci la tua mail</string>
     <string name="reg_mail2">Re-inserisci la tua mail</string>
-    <string name="reg_dept">Inserisci il tuo dipartimento</string>
+    <string name="reg_dept">\ Seleziona la macroarea</string>
+    <string name="firstDegree">Laurea Triennale</string>
+    <string name="secondDegree">Laurea Magistrale</string>
     <string name="submitSignUp">Registrati</string>
     <string name="logout">Logout</string>
     <string name="changePass">Cambia Password</string>

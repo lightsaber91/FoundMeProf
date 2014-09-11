@@ -24,15 +24,20 @@
     <string-array name="pref_sync_frequency_values" />
     <string-array name="pref_example_list_titles" />
     <string-array name="pref_example_list_values" />
+
     <string-array name="Priority">
         <item>Normale</item>
         <item>Alta</item>
         <item>Bassa</item>
     </string-array>
-    <string-array name="Minutes">
-        <item>30</item>
-        <item>60</item>
-        <item>90</item>
-        <item>120</item>
+
+    <string-array name="Departments">
+        <item>--Seleziona--</item>
+        <item>Economia</item>
+        <item>Giurisprudenza</item>
+        <item>Lettere</item>
+        <item>Ingegneria</item>
+        <item>Medicina</item>
+        <item>Scienze</item>
     </string-array>
 </resources>

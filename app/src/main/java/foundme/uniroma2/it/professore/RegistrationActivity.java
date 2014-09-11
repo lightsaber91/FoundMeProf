@@ -37,14 +37,12 @@ public class RegistrationActivity extends Activity {
     private EditText etNewPass2;
     private EditText etNewMail;
     private EditText etNewMail2;
-    private EditText etNewDept;
 
     private static String NewUser = null;
     private static String NewPass1 = null;
     private static String NewPass2 = null;
     private static String NewMail = null;
     private static String NewMail2 = null;
-    private static String NewDept = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class RegistrationActivity extends Activity {
         etNewPass2 = (EditText) findViewById(R.id.etNewPass2);
         etNewMail = (EditText) findViewById(R.id.etNewMail);
         etNewMail2 = (EditText) findViewById(R.id.etNewMail2);
-        etNewDept = (EditText) findViewById(R.id.etNewDept);
 
         btSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,13 +65,12 @@ public class RegistrationActivity extends Activity {
                 NewPass2 = etNewPass2.getText().toString();
                 NewMail = etNewMail.getText().toString();
                 NewMail2 = etNewMail2.getText().toString();
-                NewDept = etNewDept.getText().toString();
 
                 if (!checkLoginData(NewPass1, NewPass2, NewMail, NewMail2)) {
                     Toast.makeText(getApplicationContext(), Variables_it.FILL_FIELD, Toast.LENGTH_LONG).show();
                 } else {
                     try {
-                        manageRegistration(NewUser, NewPass1, NewMail, NewDept);
+                        manageRegistration(NewUser, NewPass1, NewMail);
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -86,10 +82,10 @@ public class RegistrationActivity extends Activity {
 
     }
 
-    private void manageRegistration(String name, String pass, String mail, String dept) throws ExecutionException, InterruptedException {
+    private void manageRegistration(String name, String pass, String mail) throws ExecutionException, InterruptedException {
         pass = computeSHAHash.sha1(pass);
         new Connection(this, true, Variables_it.SING_UP, Variables_it.SIGN_UP_OK, Variables_it.REGIS)
-                .execute(Variables_it.REGISTRATION, Variables_it.NAME, name, Variables_it.PASS, pass, Variables_it.MAIL, mail, Variables_it.DEPT, dept);
+                .execute(Variables_it.REGISTRATION, Variables_it.NAME, name, Variables_it.PASS, pass, Variables_it.MAIL, mail);
     }
 
     private boolean checkLoginData(String pass1, String pass2, String mail1, String mail2) {
