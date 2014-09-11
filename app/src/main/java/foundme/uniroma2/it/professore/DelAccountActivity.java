@@ -79,6 +79,6 @@ public class DelAccountActivity extends Activity {
     }
 
     private boolean checkData(String mail, String pass) {
-        return !(mail == null || pass == null || mail.isEmpty() || mail.equalsIgnoreCase(SPEditor.getUser(SPEditor.init(this)))|| pass.isEmpty() || pass.length() < 8);
+        return !(mail == null || pass == null || mail.isEmpty() || mail.equalsIgnoreCase(SPEditor.getUser(SPEditor.init(this))) || pass.isEmpty() || pass.length() < 8);
     }
 }
