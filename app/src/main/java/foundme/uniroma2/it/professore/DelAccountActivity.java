@@ -60,7 +60,6 @@ public class DelAccountActivity extends Activity {
                     Toast.makeText(getApplicationContext(), Variables_it.FILL_FIELD, Toast.LENGTH_LONG).show();
                 } else {
                     pass = computeSHAHash.sha1(pass);
-                    //new Delete().execute(mail, pass);
                     try {
                         manageCourse(mail, pass);
                     } catch (ExecutionException e) {
@@ -80,6 +79,6 @@ public class DelAccountActivity extends Activity {
     }
 
     private boolean checkData(String mail, String pass) {
-        return !(mail == null || pass == null || mail.isEmpty() || pass.isEmpty() || pass.length() < 8);
+        return !(mail == null || pass == null || mail.isEmpty() || mail.equalsIgnoreCase(SPEditor.getUser(SPEditor.init(this)))|| pass.isEmpty() || pass.length() < 8);
     }
 }
