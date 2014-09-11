@@ -153,6 +153,6 @@ public class AddCourseActivity extends Activity {
     }
 
     private boolean checkLoginData(String name1, String title, String cfu, String dept) {
-        return !(name1 == null || name1.isEmpty() || name1.equalsIgnoreCase("") || title == null || title.isEmpty() || title.equalsIgnoreCase("") || cfu == null || cfu.isEmpty() || cfu.equalsIgnoreCase("") || dept == null || dept.isEmpty() || dept.equalsIgnoreCase(""));
+        return (firstDegree.equalsIgnoreCase("1") || secondDegree.equalsIgnoreCase("1")) && !(name1 == null || name1.isEmpty() || name1.equalsIgnoreCase("") || title == null || title.isEmpty() || title.equalsIgnoreCase("") || cfu == null || cfu.isEmpty() || cfu.equalsIgnoreCase("") || dept == null || dept.isEmpty() || dept.equalsIgnoreCase(""));
     }
 }
