@@ -73,6 +73,7 @@ public class HomeActivity extends Activity {
     private static ActionMode.Callback modeCallBack;
     private static SwipeRefreshLayout swipeView;
     private static Context context;
+    private static View viewList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +120,7 @@ public class HomeActivity extends Activity {
             }
 
             public void onDestroyActionMode(ActionMode mode) {
+                viewList.setBackgroundColor(Color.TRANSPARENT);
                 mode = null;
             }
 
@@ -235,8 +237,9 @@ public class HomeActivity extends Activity {
                 for (int j = 0; j < parent.getChildCount(); j++)
                     parent.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
 
-                view.setBackgroundColor(Color.LTGRAY);
+                view.setBackgroundColor(0xff429874);
                 ((Activity)context).startActionMode(modeCallBack);
+                viewList = view;
                 return true;
             }
         });
