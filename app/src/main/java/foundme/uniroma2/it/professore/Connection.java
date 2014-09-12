@@ -177,6 +177,15 @@ public class Connection extends AsyncTask<String, Void, String[]> {
         if (returnMessage.equalsIgnoreCase(Variables_it.NO_MSG)) {
             ReadMessageActivity.populateView(result);
         }
+        else if (returnMessage.equalsIgnoreCase(Variables_it.DEL_MSG_OK)) {
+            try {
+                ReadMessageActivity.getMsg(toDo, false);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         else if (toDo.equalsIgnoreCase(Variables_it.GET)){
             HomeActivity.populateView(result);
         }

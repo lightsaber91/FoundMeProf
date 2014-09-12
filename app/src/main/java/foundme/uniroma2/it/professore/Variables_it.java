@@ -47,7 +47,7 @@ public class Variables_it {
 
     //To-Do Job String
     public static final String FINISH = "C";
-    public static final String DELACC = "D";
+    public static final String DELACC = "DA";
     public static final String HOME = "H";
     public static final String CHANGEP = "CP";
     public static final String REGIS = "R";
@@ -96,6 +96,7 @@ public class Variables_it {
     public static final String DEL_COURSE = "http://54.187.29.169/android/prof/delCourse.php";
     public static final String SEND_MSG = "http://54.187.29.169/android/prof/writeMsg.php";
     public static final String READING = "http://54.187.29.169/android/prof/getMsgList.php";
+    public static final String DEL_MSG = "http://54.187.29.169/android/prof/delMsg.php";
     public static final String SITE_TV = "http://didatticaweb.uniroma2.it/";
 
     //Connection Variables
@@ -106,6 +107,7 @@ public class Variables_it {
     //Connection Result
     public static final String SIGN_UP_OK = "Account creato correttamente";
     public static final String DEL_COURSE_OK = "Corso rimosso correttamente";
+    public static final String DEL_MSG_OK = "Messaggio eliminato correttamente";
     public static final String PASS_CHANGED = "Password cambiata correttamente";
     public static final String SEND_NOTIF_OK = "Notifica inviata correttamente";
     public static final String ADD_COURSE_OK = "Corso aggiunto correttamente";
